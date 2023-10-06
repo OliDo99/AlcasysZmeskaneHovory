@@ -15,19 +15,19 @@ export class AppComponent implements OnInit {
   isCollapsed = [false,false,false];
   show = -1;
   
-  phonesNEW!:any;
+  phones!:any;
 
   done(phone:number,index:number,){
     let i = 0;
-    for(let element of this.phonesNEW[index].phoneCalls) {
+    for(let element of this.phones[index].phoneCalls) {
       if(element.phone == phone) { 
-        this.phonesNEW[index].phoneCalls[i].done = !this.phonesNEW[index].phoneCalls[i].done;
+        this.phones[index].phoneCalls[i].done = !this.phones[index].phoneCalls[i].done;
         
       }
       i++;
       
     }
-    console.log(this.phonesNEW)
+    console.log(this.phones)
   }
  
   toggleCollapse(i: number) {
@@ -38,10 +38,18 @@ export class AppComponent implements OnInit {
   getData(){  
     this.http.get('http://127.0.0.1:5000')
     .subscribe((data:any) => { 
-      this.phonesNEW= data.data
+      this.phones= data.data
       console.log(data.data)
     })
   }
+
+  postData(table: string, id: number){  
+    this.http.post('http://127.0.0.1:5000/secret',{"Table":table,"ID":id})
+    .subscribe((data:any) => { 
+      console.log(data)
+    })
+  }
+  
 }
 
 
