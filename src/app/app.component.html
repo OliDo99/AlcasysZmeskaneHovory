@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
-<h2 (click)="getData()">Zmeskane hovory</h2>
-<h2 (click)="postData('Bezny',3)">Zmeskane hovory</h2>
+<h2 (click)="getData()">Get</h2>
+<h2 (click)="postData('Bezny',true,3)">Update</h2>
 <div class="list-group list-group-horizontal">
   <div class="d-inline-flex p-2 bd-highlight border border-primary" >
     <div class="container">
@@ -17,7 +17,7 @@
       <div class="col col-auto">phone: {{item.phone}}</div>
       <div class="col col-auto">date: {{item.date}}</div>
       <div class="col col-auto">time: {{item.time}}</div>
-      <div class="col col-auto">done: <input type="checkbox" (click)='done(item.phone,show)'></div>
+      <div type="button" class="btn btn-dark" (click)='postData(phones[show].name,item.done,item.id)'>done</div>
       </div>
     </div>
   </div>
