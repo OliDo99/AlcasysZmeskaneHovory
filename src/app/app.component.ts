@@ -15,21 +15,28 @@ export class AppComponent implements OnInit {
   isCollapsed = [false,false,false];
   show = -1
   phones!:any;
+  url = "http://127.0.0.1:5000"
  
   toggleCollapse(i: number) {
     if(this.show == i) { this.show =-1; }
     else{this.show = i;}
   }
-
+  
   getData(){
-    this.http.get('http://127.0.0.1:5000')
+    this.http.get(this.url)
     .subscribe((data:any) => {
       this.phones= data.data
     })
   }
 
-  postData(table: string,data: boolean,id: number){
-    this.http.post('http://127.0.0.1:5000/secret',{"Table":table,"Data":data,"ID":id})
+  markDone(table: string,data: boolean,id: number){
+    this.http.post(this.url +"/markDone",{"Table":table,"Data":data,"ID":id})
+    .subscribe(() => {
+      this.getData()
+    })
+  }
+  resetData(){
+    this.http.get(this.url+'/reset')
     .subscribe(() => {
       this.getData()
     })

@@ -1,25 +1,46 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
-<h2 (click)="getData()">Get</h2>
-<h2 (click)="postData('Bezny',true,3)">Update</h2>
-<div class="list-group list-group-horizontal">
-  <div class="d-inline-flex p-2 bd-highlight border border-primary" >
-    <div class="container">
-      <div *ngFor="let data of phones;index as i">
-        <div class="col btn " (click)="toggleCollapse(i)">{{data.name}} <div class="circle"><div class="circle-n">{{data.phoneCalls.length}}</div>
-      </div></div>
-      </div>
-    </div>
-  </div>
 
-  <div class="card " *ngIf="show+1">
-    <div class ="container p-1"*ngFor="let item of phones[show].phoneCalls">
-      <div class="row">
-      <div class="col col-auto">phone: {{item.phone}}</div>
-      <div class="col col-auto">date: {{item.date}}</div>
-      <div class="col col-auto">time: {{item.time}}</div>
-      <div type="button" class="btn btn-dark" (click)='postData(phones[show].name,item.done,item.id)'>done</div>
-      </div>
-    </div>
-  </div>
-
+<div class="float-left">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Table</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of phones;index as i">
+        <td><div class="col btn " (click)="toggleCollapse(i)">{{data.name}}: {{data.phoneCalls.length}}</div></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+
+<div class="float-left" *ngIf="show+1">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Call</th>
+        <th scope="col">Done</th>
+      </tr>
+    </thead>
+
+    <tbody class="table-group-divider">
+      <tr *ngFor="let item of phones[show].phoneCalls">
+
+        <td>{{item.id}}</td>
+        <td>{{item.phone}}</td>
+        <td>{{item.date}}</td>
+        <td>{{item.time}}</td>
+        <td><div type="button" class="btn btn-dark">Call</div></td>
+        <td><div type="button" class="btn btn-dark" (click)='markDone(phones[show].name,item.done,item.id)'>Done</div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div><button (click)="resetData()">Reset</button></div>
