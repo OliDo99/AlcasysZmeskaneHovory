@@ -29,8 +29,8 @@ export class AppComponent implements OnInit {
     })
   }
 
-  markDone(table: string,data: boolean,id: number){
-    this.http.post(this.url +"/markDone",{"Table":table,"Data":data,"ID":id})
+  markDone(id: number){
+    this.http.post(this.url +"/markDone",{"ID":id})
     .subscribe(() => {
       this.getData()
     })

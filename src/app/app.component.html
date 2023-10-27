@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
 
-<div class="float-left">
+<div class="float-left ">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -8,8 +8,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of phones;index as i">
-        <td><div class="col btn " (click)="toggleCollapse(i)">{{data.name}}: {{data.phoneCalls.length}}</div></td>
+      <tr *ngFor="let data of phones;index as i" >
+        <td (click)="toggleCollapse(i)" class="btn col">{{data.name}}: {{data.phoneCalls.length}}</td>
       </tr>
     </tbody>
   </table>
@@ -21,22 +21,19 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Phone</th>
-        <th scope="col">Date</th>
         <th scope="col">Time</th>
         <th scope="col">Call</th>
         <th scope="col">Done</th>
       </tr>
     </thead>
 
-    <tbody class="table-group-divider">
+<tbody class="table-group-divider">
       <tr *ngFor="let item of phones[show].phoneCalls">
-
         <td>{{item.id}}</td>
         <td>{{item.phone}}</td>
-        <td>{{item.date}}</td>
         <td>{{item.time}}</td>
         <td><div type="button" class="btn btn-dark">Call</div></td>
-        <td><div type="button" class="btn btn-dark" (click)='markDone(phones[show].name,item.done,item.id)'>Done</div></td>
+        <td><div type="button" class="btn btn-dark" (click)='markDone(item.id)'>Done</div></td>
       </tr>
     </tbody>
   </table>
