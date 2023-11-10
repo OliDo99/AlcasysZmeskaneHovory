@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
 
-<div class="float-left ">
+<div><button (click)="resetData()">Reset</button></div>
+
+<div class="float-left">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -9,35 +11,36 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of phones;index as i" >
-        <td (click)="toggleCollapse(i)" class="btn col">{{data.name}}: {{data.phoneCalls.length}}</td>
+        <td (click)="toggleCollapse(i)"  class="btn col">{{data.name}}: {{data.phoneCalls.length}}</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<div class="float-left" *ngIf="show+1">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Time</th>
-        <th scope="col">Call</th>
-        <th scope="col">Done</th>
-      </tr>
-    </thead>
-
-<tbody class="table-group-divider">
-      <tr *ngFor="let item of phones[show].phoneCalls">
-        <td>{{item.id}}</td>
-        <td>{{item.phone}}</td>
-        <td>{{item.time}}</td>
-        <td><div type="button" class="btn btn-dark">Call</div></td>
-        <td><div type="button" class="btn btn-dark" (click)='markDone(item.id)'>Done</div></td>
-      </tr>
-    </tbody>
-  </table>
+<div *ngFor="let data of phones;index as i" >
+  <div [visible]="isCollapsed[i]" cCollapse>
+    <table class="table table-hover container-sm  ">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Time</th>
+          <th scope="col">Date</th>
+          <th scope="col">Call</th>
+          <th scope="col">Done</th>
+        </tr>
+      </thead>
+  
+      <tbody class="table-group-divider">
+        <tr *ngFor="let item of phones[i].phoneCalls">
+          <td>{{item.id}}</td>
+          <td>{{item.phone}}</td>
+          <td>{{item.time}}</td>
+          <td>{{item.date}}</td>
+          <td><div type="button" class="btn btn-dark">Call</div></td>
+          <td><div type="button" class="btn btn-dark" (click)='markDone(item.id)'>Done</div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-
-<div><button (click)="resetData()">Reset</button></div>

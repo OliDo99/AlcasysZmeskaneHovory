@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,14 +17,22 @@ export class AppComponent implements OnInit {
   show = -1
   phones!:any;
   url = "http://127.0.0.1:5000"
- 
-  toggleCollapse(i: number) {
-    if(this.show == i) { this.show =-1; }
-    else{this.show = i;}
+  
+
+  visible = false;
+
+
+
+  toggleCollapse2(): void {
+    this.visible = !this.visible;
+  }
+  toggleCollapse(i:number): void {
+    this.isCollapsed = [false,false,false];
+    this.isCollapsed[i] = true;
   }
   
   getData(){
-    this.http.get(this.url)
+    this.http.get(this.url +"/getData")
     .subscribe((data:any) => {
       this.phones= data.data
     })
