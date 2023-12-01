@@ -1,0 +1,11 @@
+.TopBar{background-color: #3F51B5; 
+    height: 65px; 
+    padding: 15px; 
+    color: aliceblue; 
+    display: flex; 
+    justify-content: space-between;
+    text-align: center;
+}
+.LoginTab{
+    visibility: visible;
+}
